@@ -48,7 +48,7 @@ public class UserService {
         Optional<User> user = repository.findById(id);
 
         if (user.isPresent()) repository.deleteById(id);
-        else throw UserNotFoundException;
+        else throw UserNotFoundException; // Não era para ser? else throw new UserNotFoundException("Usuário não encontrado.");
 
     }
 }
