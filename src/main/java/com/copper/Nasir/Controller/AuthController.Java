@@ -21,7 +21,6 @@ public class AuthController {
         this.authService = authService;
     }
  
-    // POST /auth/register
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> register(@Valid @RequestBody User user) {
         String token = authService.register(user);
@@ -30,7 +29,6 @@ public class AuthController {
                 .body(Map.of("token", token));
     }
  
-    // POST /auth/login
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> body) {
         String email    = body.get("email");
