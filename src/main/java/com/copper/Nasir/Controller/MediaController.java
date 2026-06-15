@@ -2,6 +2,7 @@ package com.copper.Nasir.Controller;
  
 import com.copper.Nasir.Entity.Media;
 import com.copper.Nasir.Service.MediaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,8 @@ public class MediaController {
         this.service = service;
     }
  
-
+    // GET /medias            -> lista tudo
+    // GET /medias?search=abc -> filtra por título contendo "abc" (ignora maiúsculas/minúsculas)
     @GetMapping
     public ResponseEntity<List<Media>> getMedias(@RequestParam(required = false) String search) {
         return ResponseEntity.ok(service.search(search));
@@ -35,7 +37,7 @@ public class MediaController {
     }
  
     @PostMapping
-    public ResponseEntity<Media> createMedia(@RequestBody Media media) {
+    public ResponseEntity<Media> createMedia(@Valid @RequestBody Media media) {
         Media created = service.createMedia(media);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
