@@ -3,7 +3,9 @@ package com.copper.Nasir.Controller;
  
 import com.copper.Nasir.Entity.User;
 import com.copper.Nasir.Service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
  
@@ -32,7 +34,13 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new com.copper.Nasir.Exception.UserNotFoundException("User not found with id: " + id));
     }
- 
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+        User savedUser = service.createUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User newUser) {
         newUser.setId(id);
