@@ -26,9 +26,9 @@ public class User implements UserDetails {
     private UUID id;
 
     @NotNull
-    @JsonProperty("username")          // JSON usa "username" para este campo
+    @JsonProperty("username")
     @Column(name = "username", nullable = false)
-    private String name;               // Lombok gera getName() — sem conflito após o @JsonIgnore abaixo
+    private String name;
 
     @Email
     @NotNull
@@ -40,16 +40,11 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    // ─── UserDetails ─────────────────────────────────────────────────────────
-    // Todos os métodos da interface UserDetails recebem @JsonIgnore.
-    //
-    // Sem @JsonIgnore em getUsername(), Jackson enxerga DOIS getters para a
-    // propriedade "username": getName() (via @JsonProperty no campo) e
-    // getUsername() (inferido pelo nome do método). O conflito faz canRead()
-    // retornar false → nenhum converter aceita a requisição → 415.
-    //
-    // Os demais métodos (getAuthorities, is*) também são ignorados para não
-    // vazar dados internos do Spring Security na serialização JSON.
+    // novo: URL do avatar salvo no servidor
+    // Lombok gera getAvatarUrl() e setAvatarUrl() automaticamente via @Getter/@Setter
+    private String avatarUrl;
+
+    // ─── UserDetails ──────────────────────────────────────────────────────────
 
     @Override
     @JsonIgnore
