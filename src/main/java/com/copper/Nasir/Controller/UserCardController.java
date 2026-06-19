@@ -125,3 +125,17 @@ public class UserCardController {
         return ResponseEntity.noContent().build();
     }
 }
+
+/* // 1. Listagem paginada com filtros opcionais
+    @GetMapping("/cards")
+    public ResponseEntity<Page<CardResponseDTO>> getUserCards(
+            @AuthenticationPrincipal User user,
+            @RequestParam(defaultValue = "0")           int page,
+            @RequestParam(defaultValue = "20")          int limit,
+            @RequestParam(defaultValue = "updatedAt") String sort,
+            @RequestParam(required = false)           CardStatus status,
+            @RequestParam(required = false)           CardCategory category,
+            @RequestParam(required = false)           Double rating) { // <-- Novo parâmetro adicionado aqui
+        return ResponseEntity.ok(
+                userCardService.getUserCards(user, page, limit, sort, status, category, rating));
+    } */
