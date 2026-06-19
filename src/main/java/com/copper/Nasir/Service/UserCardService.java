@@ -164,3 +164,44 @@ public class UserCardService {
                 });
     }
 }
+
+/* package com.copper.Nasir.Service;
+
+import com.copper.Nasir.Entity.UserCard;
+import com.copper.Nasir.Enum.CardCategory;
+import com.copper.Nasir.Enum.CardStatus;
+import com.copper.Nasir.Repository.UserCardRepository;
+import com.copper.Nasir.Specification.UserCardSpecification;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class UserCardService {
+
+    @Autowired
+    private UserCardRepository userCardRepository;
+
+    public List<UserCard> buscarComFiltros(UUID userId, CardCategory category, CardStatus status, Double rating) {
+        // Todo filtro DEVE ser isolado por Usuário por segurança
+        Specification<UserCard> spec = Specification.where(UserCardSpecification.byUserId(userId));
+
+        if (category != null) {
+            spec = spec.and(UserCardSpecification.byCategory(category));
+        }
+        
+        if (status != null) {
+            spec = spec.and(UserCardSpecification.byStatus(status));
+        }
+        
+        if (rating != null) {
+            // Se o front enviar uma nota exata, filtramos onde a nota seja maior ou igual a ela
+            spec = spec.and(UserCardSpecification.byMinRating(rating));
+        }
+
+        return userCardRepository.findAll(spec);
+    }
+} */
