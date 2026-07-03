@@ -277,6 +277,9 @@ public class UserCardService {
             throw new IllegalStateException(
                     "A avaliação só pode ser registrada em mídias com status CONCLUIDO.");
         }
+        if (userRating != null && (userRating < 1.0 || userRating > 10.0)) {
+        throw new IllegalArgumentException("A nota de avaliação deve estar entre 1 e 10.");
+    }
 
         uc.setUserRating(userRating);
         uc.setComment(comment);
