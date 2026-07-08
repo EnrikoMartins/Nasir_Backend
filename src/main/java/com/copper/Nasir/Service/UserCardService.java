@@ -9,7 +9,7 @@ import com.copper.Nasir.Enum.CardCategory;
 import com.copper.Nasir.Enum.CardStatus;
 import com.copper.Nasir.Repository.CardRepository;
 import com.copper.Nasir.Repository.UserCardRepository;
-import com.copper.Nasir.Specification.UserCardSpecification;
+import com.copper.Nasir.Spec.UserCardSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

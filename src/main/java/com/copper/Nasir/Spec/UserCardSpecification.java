@@ -1,4 +1,4 @@
-package com.copper.Nasir.Specification;
+package com.copper.Nasir.Spec;
 
 import com.copper.Nasir.Entity.Card;
 import com.copper.Nasir.Entity.UserCard;
